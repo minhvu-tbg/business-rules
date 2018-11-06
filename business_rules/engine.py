@@ -1,5 +1,6 @@
 import inspect
 import logging
+import sys
 
 from . import utils
 from .fields import FIELD_NO_INPUT
@@ -229,7 +230,12 @@ def _build_variable_parameters(method, parameters, rule):
 
 
 def _build_parameters(method, parameters, extra_parameters):
-    if inspect.getargspec(method).keywords is not None:
+    if sys.version_info >= (3, 0):
+        keywords = inspect.getfullargspec(method).varkw
+    else:
+        keywords = inspect.getargspec(method).keywords
+
+    if keywords is not None:
         method_params = extra_parameters
     else:
         method_params = {}
