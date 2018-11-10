@@ -2,7 +2,7 @@ from business_rules.actions import rule_action, BaseActions
 from business_rules.engine import check_condition, run_all
 from business_rules.fields import FIELD_TEXT, FIELD_NUMERIC, FIELD_SELECT
 from business_rules.variables import BaseVariables, string_rule_variable, numeric_rule_variable, boolean_rule_variable
-from . import TestCase
+from tests import TestCase
 
 
 class SomeVariables(BaseVariables):
@@ -145,7 +145,7 @@ class IntegrationTests(TestCase):
 
         err_string = 'Variable food is not defined in class SomeVariables'
 
-        with self.assertRaisesRegexp(AssertionError, err_string):
+        with self.assertRaisesRegex(AssertionError, err_string):
             check_condition(condition, SomeVariables(), rule)
 
     def test_check_incorrect_operator_name(self):
@@ -176,7 +176,7 @@ class IntegrationTests(TestCase):
 
         err_string = 'Missing parameters x for variable x_plus_one'
 
-        with self.assertRaisesRegexp(AssertionError, err_string):
+        with self.assertRaisesRegex(AssertionError, err_string):
             check_condition(condition, SomeVariables(), rule)
 
     def test_check_invalid_params(self):
@@ -193,7 +193,7 @@ class IntegrationTests(TestCase):
 
         err_string = 'Invalid parameters y for variable x_plus_one'
 
-        with self.assertRaisesRegexp(AssertionError, err_string):
+        with self.assertRaisesRegex(AssertionError, err_string):
             check_condition(condition, SomeVariables(), rule)
 
     def test_variable_received_rules(self):

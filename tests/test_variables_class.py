@@ -1,6 +1,6 @@
 from business_rules.operators import StringType
 from business_rules.variables import BaseVariables, rule_variable
-from . import TestCase
+from tests import TestCase
 
 
 class VariablesClassTests(TestCase):
